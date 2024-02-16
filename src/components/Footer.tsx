@@ -5,18 +5,30 @@ export default function Footer() {
     return (
         <div className="flex justify-between items-center">
             <div className="social flex gap-7">
-                <div className="social-icon w-7 h-7 hover:bg-secondary hover:text-primary rounded-md flex justify-center items-center transition-all duration-250">
+                <a
+                    href="https://www.facebook.com/ngtrxhieu/"
+                    className="social-icon w-7 h-7 hover:bg-secondary hover:text-primary rounded-md flex justify-center items-center transition-all duration-250"
+                >
                     <Facebook size={18} strokeWidth={1.8} />
-                </div>
-                <div className="social-icon w-7 h-7 hover:bg-secondary hover:text-primary rounded-md flex justify-center items-center transition-all duration-250">
+                </a>
+                <a
+                    href="https://github.com/nguyentrunghieu297"
+                    className="social-icon w-7 h-7 hover:bg-secondary hover:text-primary rounded-md flex justify-center items-center transition-all duration-250"
+                >
                     <Github size={18} strokeWidth={1.8} />
-                </div>
-                <div className="social-icon w-7 h-7 hover:bg-secondary hover:text-primary rounded-md flex justify-center items-center transition-all duration-250">
+                </a>
+                <a
+                    href="mailto:trunghieunguyen2729@gmail.com"
+                    className="social-icon w-7 h-7 hover:bg-secondary hover:text-primary rounded-md flex justify-center items-center transition-all duration-250"
+                >
                     <Mail size={18} strokeWidth={1.8} />
-                </div>
-                <div className="social-icon w-7 h-7 hover:bg-secondary hover:text-primary rounded-md flex justify-center items-center transition-all duration-250">
+                </a>
+                <a
+                    href="tel:0819438687"
+                    className="social-icon w-7 h-7 hover:bg-secondary hover:text-primary rounded-md flex justify-center items-center transition-all duration-250"
+                >
                     <Phone size={18} strokeWidth={1.8} />
-                </div>
+                </a>
             </div>
             <div className="copyright text-sm">Copyright © {currentYear} CJ Education.</div>
         </div>

@@ -17,7 +17,7 @@ export default function DefaultLayout({ children }: { children: React.ReactNode 
                     <div className="m-6 grow">{children}</div>
                 </main>
             </div>
-            <footer className="footer fixed bottom-0 bg-[#EBDFD7] w-full mt-auto py-4 px-10">
+            <footer className="footer fixed z-0 bottom-0 bg-[#EBDFD7] w-full mt-auto py-4 px-10">
                 <Footer />
             </footer>
         </div>
