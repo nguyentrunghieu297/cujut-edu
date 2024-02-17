@@ -10,7 +10,7 @@ export default function PageLayout({
     return (
         <div className="flex flex-col">
             <header className="h-16 w-auto">{header}</header>
-            <main className="">{content}</main>
+            <main>{content}</main>
         </div>
     );
 }

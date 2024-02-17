@@ -13,10 +13,17 @@ export default function InfoModal({ isOpen, onClose, children }: InfoModalProps)
     return (
         <div
             className={`modal-overlay fixed inset-0 z-10 w-full h-full bg-black bg-opacity-50 flex justify-center items-center`}
+            onClick={onClose}
         >
-            <div className="modal bg-white rounded-lg shadow-md relative overflow-hidden">
+            <div
+                className="modal bg-white rounded-lg shadow-md relative overflow-hidden"
+                onClick={(e) => e.stopPropagation()}
+            >
                 <div className="cta-close bg-slate-700 w-full h-9">
-                    <button className="modal-close-btn absolute top-1 right-1" onClick={onClose}>
+                    <button
+                        className="modal-close-btn absolute top-1 right-1 hover:opacity-50"
+                        onClick={onClose}
+                    >
                         <XCircle size={28} color="white" />
                     </button>
                 </div>
