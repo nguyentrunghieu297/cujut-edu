@@ -1,15 +1,15 @@
-import "./App.css";
+import { Routes, Route } from "react-router-dom";
 import DefaultLayout from "./layouts/DefaultLayout";
 import AccountList from "./pages/AccountList";
 import Dashboard from "./pages/Dashboard";
 import LessonList from "./pages/LessonList";
-import { Routes, Route } from "react-router-dom";
 import News from "./pages/News";
 import StudentList from "./pages/StudentList";
 import Setting from "./pages/Setting";
 import ClassList from "./pages/ClassList";
 import PageLayout from "./layouts/PageLayout";
 import ClassHeader from "./components/ClassHeader";
+import "./App.css";
 
 function App() {
     return (
