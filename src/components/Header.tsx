@@ -1,5 +1,6 @@
 import { Bell, ChevronDown } from "lucide-react";
 import img1 from "../assets/img/user-img.jpg";
+import { Link } from "react-router-dom";
 
 export default function Header() {
     return (
@@ -20,18 +21,20 @@ export default function Header() {
                 <div className="notify w-12 h-12 flex justify-center items-center bg-[#FFFFFF] hover:bg-secondary hover:text-primary rounded-full transition-all duration-250 cursor-pointer">
                     <Bell size={20} />
                 </div>
-                <div className="user flex items-center bg-[#FFFFFF] hover:bg-secondary hover:text-primary transition-all duration-250 rounded-full px-1 py-1 text-xs cursor-pointer">
-                    <div className="w-10 h-10 rounded-full overflow-hidden flex-shrink-0">
-                        <img src={img1} alt="" className="user-img" />
+                <Link to={`./profile`}>
+                    <div className="user flex items-center bg-[#FFFFFF] hover:bg-secondary hover:text-primary transition-all duration-250 rounded-full px-1 py-1 text-xs cursor-pointer">
+                        <div className="w-10 h-10 rounded-full overflow-hidden flex-shrink-0">
+                            <img src={img1} alt="" className="user-img" />
+                        </div>
+                        <div className="user-content ml-2">
+                            <div className="user-name font-semibold">Nguyen Trung Hieu</div>
+                            <div className="user-role font-light">@FontendDeveloper</div>
+                        </div>
+                        <div className="icon px-2">
+                            <ChevronDown strokeWidth={1} size={20} />
+                        </div>
                     </div>
-                    <div className="user-content ml-2">
-                        <div className="user-name font-semibold">Nguyen Trung Hieu</div>
-                        <div className="user-role font-light">@FontendDeveloper</div>
-                    </div>
-                    <div className="icon px-2">
-                        <ChevronDown strokeWidth={1} size={20} />
-                    </div>
-                </div>
+                </Link>
             </div>
         </div>
     );
