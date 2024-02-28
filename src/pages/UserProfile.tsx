@@ -2,7 +2,7 @@ import avatar from "../assets/img/user-img.jpg";
 
 export default function UserProfile() {
     return (
-        <div>
+        <div className="relative">
             <div className="user-background relative">
                 <img
                     className="w-full h-56 object-cover rounded-3xl"
@@ -13,16 +13,151 @@ export default function UserProfile() {
                     <img
                         src={avatar}
                         alt="user-img"
-                        className="user-img absolute top-48 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-full w-48 border-8 border-solid border-[#F2EAE5]"
+                        className="user-img absolute top-36 left-10 rounded-full w-48 border-8 border-solid border-[#F2EAE5]"
                     />
                 </div>
-                <div className="user-info flex flex-col items-center gap-3 mt-20">
-                    <h1 className="user-name text-3xl font-bold text-center">Nguyen Trung Hieu</h1>
-                    <div className="user-date">Member since Aug 23, 2023</div>
+                <div className="user-info flex flex-col gap-3 mt-3 ml-64">
+                    <h1 className="user-name text-3xl font-bold">Nguyen Trung Hieu</h1>
+                    <p className="user-date">Member since Aug 23, 2023</p>
                 </div>
             </div>
-            <div className="separate border-b border-gray-300 border-solid my-3"></div>
-            <div className="edit-info"></div>
+            <div className="grid grid-cols-12 gap-10 mt-16">
+                <div className="col-span-5 user-desc ">
+                    <div className="courses-info flex justify-evenly mt-5">
+                        <div className="course">
+                            <h1 className="text-2xl font-bold text-gray-800 mb-2">Studying</h1>
+                            <p className="text-gray-600 text-lg font-medium">3 courses</p>
+                        </div>
+                        <div className="separate w-px bg-gray-300"></div>
+                        <div className="course">
+                            <h1 className="text-2xl font-bold text-gray-800 mb-2">Complete</h1>
+                            <p className="text-gray-600 text-lg font-medium">15 courses</p>
+                        </div>
+                        <div className="separate w-px bg-gray-300"></div>
+                        <div className="course">
+                            <h1 className="text-2xl font-bold text-gray-800 mb-2">Hours</h1>
+                            <p className="text-gray-600 text-lg font-medium">279 hours</p>
+                        </div>
+                    </div>
+                    <div className="about-me mt-10 text-center">
+                        <h1 className="text-2xl font-bold text-gray-800 mb-2">About Me</h1>
+                        <p className="text-gray-600 px-16 leading-7 font-normal">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam neque
+                            explicabo perspiciatis aspernatur eligendi delectus nulla maiores est
+                            soluta temporibus sed eum vitae, molestias nemo.
+                        </p>
+                    </div>
+                    <div className="cta flex justify-center gap-5 mt-20">
+                        <button className="cta-btn bg-sky-500 hover:bg-white hover:text-sky-500 text-white font-semibold py-4 px-8 rounded inline-flex items-center transition-colors duration-300">
+                            Edit Profile
+                        </button>
+                        <button className="cta-btn bg-gray-50 hover:bg-gray-500 text-gray-500 hover:text-white font-semibold py-4 px-8 rounded inline-flex items-center transition-colors duration-300">
+                            Upload Photo
+                        </button>
+                    </div>
+                </div>
+                <div className="col-span-7 edit-info border-l border-solid border-gray-300 pl-10">
+                    <form action="" method="post" className="mx-auto">
+                        <h2 className="text-xl font-bold text-gray-800 mb-4">EDIT INFO</h2>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div className="form-item">
+                                <label
+                                    htmlFor="firstName"
+                                    className="block text-sm font-medium text-gray-700"
+                                >
+                                    First name
+                                </label>
+                                <input
+                                    type="text"
+                                    id="firstName"
+                                    className="mt-1 block w-full py-2 px-3 focus:outline-none border-b border-gray-300 focus:border-gray-700 rounded-md"
+                                />
+                            </div>
+                            <div className="form-item">
+                                <label
+                                    htmlFor="lastName"
+                                    className="block text-sm font-medium text-gray-700"
+                                >
+                                    Last name
+                                </label>
+                                <input
+                                    type="text"
+                                    id="lastName"
+                                    className="mt-1 block w-full py-2 px-3 focus:outline-none border-b border-gray-300 focus:border-gray-700 rounded-md"
+                                />
+                            </div>
+                        </div>
+                        <div className="form-item mt-4">
+                            <label
+                                htmlFor="address"
+                                className="block text-sm font-medium text-gray-700"
+                            >
+                                Address
+                            </label>
+                            <input
+                                type="text"
+                                id="address"
+                                className="mt-1 block w-full py-2 px-3 focus:outline-none border-b border-gray-300 focus:border-gray-700 rounded-md"
+                            />
+                        </div>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                            <div className="form-item">
+                                <label
+                                    htmlFor="phone"
+                                    className="block text-sm font-medium text-gray-700"
+                                >
+                                    Phone
+                                </label>
+                                <input
+                                    type="tel"
+                                    id="phone"
+                                    className="mt-1 block w-full py-2 px-3 focus:outline-none border-b border-gray-300 focus:border-gray-700 rounded-md"
+                                />
+                            </div>
+                            <div className="form-item">
+                                <label
+                                    htmlFor="email"
+                                    className="block text-sm font-medium text-gray-700"
+                                >
+                                    Email
+                                </label>
+                                <input
+                                    type="email"
+                                    id="email"
+                                    className="mt-1 block w-full py-2 px-3 focus:outline-none border-b border-gray-300 focus:border-gray-700 rounded-md"
+                                />
+                            </div>
+                        </div>
+                        <div className="form-item mt-4">
+                            <label
+                                htmlFor="bio"
+                                className="block text-sm font-medium text-gray-700"
+                            >
+                                Bio
+                            </label>
+                            <textarea
+                                id="bio"
+                                defaultValue=""
+                                className="mt-1 block w-full py-2 px-3 focus:outline-none border border-gray-300 focus:border-gray-700 rounded-md"
+                            ></textarea>
+                        </div>
+                        <div className="flex justify-end mt-6">
+                            <button
+                                type="submit"
+                                className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-sky-500 hover:bg-sky-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-700 transition-colors duration-300"
+                            >
+                                Save Changes
+                            </button>
+                            <button
+                                type="button"
+                                className="ml-3 inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-700 transition-colors duration-300"
+                            >
+                                Cancel
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
     );
 }
