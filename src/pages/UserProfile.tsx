@@ -2,28 +2,30 @@ import avatar from "../assets/img/user-img.jpg";
 
 export default function UserProfile() {
     return (
-        <div className="relative">
-            <div className="user-background relative">
+        <div className="">
+            <div className="user-background">
                 <img
                     className="w-full h-56 object-cover rounded-3xl"
                     src="https://images.unsplash.com/photo-1495080600440-47b003ed9521?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                     alt="background"
                 />
-                <div className="user-img  flex justify-center">
-                    <img
-                        src={avatar}
-                        alt="user-img"
-                        className="user-img absolute top-36 left-10 rounded-full w-48 border-8 border-solid border-[#F2EAE5]"
-                    />
-                </div>
-                <div className="user-info flex flex-col gap-3 mt-3 ml-64">
-                    <h1 className="user-name text-3xl font-bold">Nguyen Trung Hieu</h1>
-                    <p className="user-date">Member since Aug 23, 2023</p>
+                <div className="flex">
+                    <div className="user-img">
+                        <img
+                            src={avatar}
+                            alt="user-img"
+                            className="user-img rounded-full w-48 h-48 object-cover border-8 border-solid border-[#F2EAE5] mt-[-5rem] ml-10"
+                        />
+                    </div>
+                    <div className="user-info flex flex-col gap-3 mt-3 ml-7">
+                        <h1 className="user-name text-3xl font-bold">Nguyen Trung Hieu</h1>
+                        <p className="user-date">Member since Aug 23, 2023</p>
+                    </div>
                 </div>
             </div>
-            <div className="grid grid-cols-12 gap-10 mt-16">
-                <div className="col-span-5 user-desc ">
-                    <div className="courses-info flex justify-evenly mt-5">
+            <div className="grid grid-cols-12 gap-10 ">
+                <div className="col-span-5 user-desc mt-12">
+                    <div className="courses-info flex justify-evenly mt-5 text-center">
                         <div className="course">
                             <h1 className="text-2xl font-bold text-gray-800 mb-2">Studying</h1>
                             <p className="text-gray-600 text-lg font-medium">3 courses</p>
@@ -39,15 +41,18 @@ export default function UserProfile() {
                             <p className="text-gray-600 text-lg font-medium">279 hours</p>
                         </div>
                     </div>
-                    <div className="about-me mt-10 text-center">
-                        <h1 className="text-2xl font-bold text-gray-800 mb-2">About Me</h1>
-                        <p className="text-gray-600 px-16 leading-7 font-normal">
+                    <div className="about-me mt-10 ">
+                        <h1 className="text-2xl font-bold text-gray-800 mb-2 text-center">
+                            About Me
+                        </h1>
+                        <p className="text-gray-600 px-10 leading-6 font-normal text-center">
                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam neque
                             explicabo perspiciatis aspernatur eligendi delectus nulla maiores est
-                            soluta temporibus sed eum vitae, molestias nemo.
+                            soluta temporibus sed eum vitae, molestias nemo. Lorem ipsum dolor sit
+                            amet consectetur adipisicing elit.
                         </p>
                     </div>
-                    <div className="cta flex justify-center gap-5 mt-20">
+                    <div className="cta flex justify-center gap-5 mt-10">
                         <button className="cta-btn bg-sky-500 hover:bg-white hover:text-sky-500 text-white font-semibold py-4 px-8 rounded inline-flex items-center transition-colors duration-300">
                             Edit Profile
                         </button>
@@ -100,6 +105,7 @@ export default function UserProfile() {
                                 className="mt-1 block w-full py-2 px-3 focus:outline-none border-b border-gray-300 focus:border-gray-700 rounded-md"
                             />
                         </div>
+
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
                             <div className="form-item">
                                 <label
@@ -137,8 +143,7 @@ export default function UserProfile() {
                             </label>
                             <textarea
                                 id="bio"
-                                defaultValue=""
-                                className="mt-1 block w-full py-2 px-3 focus:outline-none border border-gray-300 focus:border-gray-700 rounded-md"
+                                className="mt-1 block w-full h-32 py-2 px-3 focus:outline-none border border-gray-300 focus:border-gray-700 rounded-md"
                             ></textarea>
                         </div>
                         <div className="flex justify-end mt-6">
