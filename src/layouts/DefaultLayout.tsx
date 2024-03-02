@@ -9,11 +9,11 @@ export default function DefaultLayout({ children }: { children: React.ReactNode 
             <header className="header fixed top-0 w-full bg-[#EBDFD7]">
                 <Header />
             </header>
-            <div className="content flex grow mt-20">
+            <div className="content flex grow mt-20 hidescroll">
                 <aside className="sidebar ml-3 fixed left-1 bottom-16 top-20">
                     <Navbar />
                 </aside>
-                <main className="main-content ml-60 mb-16 flex flex-col grow bg-[#F2EAE5] mx-4 rounded-2xl">
+                <main className="main-content ml-60 mb-16 flex flex-col grow bg-[#F2EAE5] mx-4 rounded-2xl overflow-auto hidescroll">
                     <div className="m-6 grow">{children}</div>
                 </main>
             </div>

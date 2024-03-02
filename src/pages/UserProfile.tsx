@@ -1,6 +1,42 @@
 import avatar from "../assets/img/user-img.jpg";
+import { SubmitHandler, useForm } from "react-hook-form";
+
+type FormValues = {
+    firstName: string;
+    lastName: string;
+    email: string;
+    phoneNumber: string;
+    address: string;
+    bio: string;
+};
 
 export default function UserProfile() {
+    const {
+        register,
+        handleSubmit,
+        formState: { errors, isSubmitting },
+        setError,
+    } = useForm<FormValues>({
+        defaultValues: {
+            firstName: "Nguyen",
+            lastName: "Hieu",
+            email: "hieuntse160479@fpt.edu.vn",
+            phoneNumber: "0888888888",
+            address: "179 Nguyen Tat Thanh, Q.3, TPHCM",
+            bio: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam neque explicabo perspiciatis aspernatur eligendi delectus nulla maiores est soluta temporibus sed eum vitae, molestias nemo. Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+        },
+    });
+
+    const onSubmit: SubmitHandler<FormValues> = async (data: FormValues) => {
+        try {
+            await new Promise((resolve) => setTimeout(resolve, 1000));
+            // throw new Error();
+            console.log(data);
+        } catch (error) {
+            setError("root", { type: "manual", message: "This email is already in use" });
+        }
+    };
+
     return (
         <div className="">
             <div className="user-background">
@@ -62,8 +98,14 @@ export default function UserProfile() {
                     </div>
                 </div>
                 <div className="col-span-7 edit-info border-l border-solid border-gray-300 pl-10">
-                    <form action="" method="post" className="mx-auto">
+                    <form
+                        action=""
+                        method="post"
+                        className="mx-auto"
+                        onSubmit={handleSubmit(onSubmit)}
+                    >
                         <h2 className="text-xl font-bold text-gray-800 mb-4">EDIT INFO</h2>
+                        {/* Name */}
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div className="form-item">
                                 <label
@@ -73,6 +115,7 @@ export default function UserProfile() {
                                     First name
                                 </label>
                                 <input
+                                    {...register("firstName")}
                                     type="text"
                                     id="firstName"
                                     className="mt-1 block w-full py-2 px-3 focus:outline-none border-b border-gray-300 focus:border-gray-700 rounded-md"
@@ -86,12 +129,14 @@ export default function UserProfile() {
                                     Last name
                                 </label>
                                 <input
+                                    {...register("lastName")}
                                     type="text"
                                     id="lastName"
                                     className="mt-1 block w-full py-2 px-3 focus:outline-none border-b border-gray-300 focus:border-gray-700 rounded-md"
                                 />
                             </div>
                         </div>
+                        {/* Address */}
                         <div className="form-item mt-4">
                             <label
                                 htmlFor="address"
@@ -100,12 +145,15 @@ export default function UserProfile() {
                                 Address
                             </label>
                             <input
+                                {...register("address", {
+                                    required: "Address is required",
+                                })}
                                 type="text"
                                 id="address"
                                 className="mt-1 block w-full py-2 px-3 focus:outline-none border-b border-gray-300 focus:border-gray-700 rounded-md"
                             />
                         </div>
-
+                        {/* Phone and Email */}
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
                             <div className="form-item">
                                 <label
@@ -115,10 +163,22 @@ export default function UserProfile() {
                                     Phone
                                 </label>
                                 <input
+                                    {...register("phoneNumber", {
+                                        required: "Phone is required",
+                                        pattern:
+                                            /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/,
+                                        minLength: {
+                                            value: 10,
+                                            message: "Phone number is not valid",
+                                        },
+                                    })}
                                     type="tel"
                                     id="phone"
                                     className="mt-1 block w-full py-2 px-3 focus:outline-none border-b border-gray-300 focus:border-gray-700 rounded-md"
                                 />
+                                {errors.phoneNumber && (
+                                    <div className="text-red-500">{errors.phoneNumber.message}</div>
+                                )}
                             </div>
                             <div className="form-item">
                                 <label
@@ -128,12 +188,26 @@ export default function UserProfile() {
                                     Email
                                 </label>
                                 <input
+                                    {...register("email", {
+                                        required: "Email is required",
+                                        pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                                        validate: (value) => {
+                                            if (!value.includes("@")) {
+                                                return "Email is not valid";
+                                            }
+                                            return true;
+                                        },
+                                    })}
                                     type="email"
                                     id="email"
                                     className="mt-1 block w-full py-2 px-3 focus:outline-none border-b border-gray-300 focus:border-gray-700 rounded-md"
                                 />
+                                {errors.email && (
+                                    <div className="text-red-500">{errors.email.message}</div>
+                                )}
                             </div>
                         </div>
+                        {/* Bio */}
                         <div className="form-item mt-4">
                             <label
                                 htmlFor="bio"
@@ -142,16 +216,28 @@ export default function UserProfile() {
                                 Bio
                             </label>
                             <textarea
+                                {...register("bio", {
+                                    maxLength: {
+                                        value: 250,
+                                        message: "Bio is too long",
+                                    },
+                                })}
                                 id="bio"
-                                className="mt-1 block w-full h-32 py-2 px-3 focus:outline-none border border-gray-300 focus:border-gray-700 rounded-md"
+                                className="mt-1 block w-full h-32 py-2 px-3 leading-normal focus:outline-none border border-gray-300 focus:border-gray-700 rounded-md"
                             ></textarea>
+                            {errors.bio && <div className="text-red-500">{errors.bio.message}</div>}
                         </div>
+                        {/* CTA */}
                         <div className="flex justify-end mt-6">
+                            {errors.root && (
+                                <div className="text-red-500">{errors.root.message}</div>
+                            )}
                             <button
+                                disabled={isSubmitting}
                                 type="submit"
-                                className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-sky-500 hover:bg-sky-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-700 transition-colors duration-300"
+                                className="inline-flex items-center justify-center w-28 px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-sky-500 hover:bg-sky-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-700 transition-colors duration-300"
                             >
-                                Save Changes
+                                {isSubmitting ? "Loading..." : "Save"}
                             </button>
                             <button
                                 type="button"
