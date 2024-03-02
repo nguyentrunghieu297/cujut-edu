@@ -1,14 +1,41 @@
 import avatar from "../assets/img/user-img.jpg";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 
-type FormValues = {
-    firstName: string;
-    lastName: string;
-    email: string;
-    phoneNumber: string;
-    address: string;
-    bio: string;
-};
+const schema = z.object({
+    firstName: z
+        .string()
+        .min(2, {
+            message: "First name is too short",
+        })
+        .max(12, {
+            message: "First name is too long",
+        }),
+    lastName: z
+        .string()
+        .min(2, {
+            message: "Last name is too short",
+        })
+        .max(12, {
+            message: "Last name is too long",
+        }),
+    email: z.string().email({ message: "Email is not valid" }),
+    phoneNumber: z.string().min(10, { message: "Phone number is not valid" }),
+    address: z.string(),
+    bio: z.string(),
+});
+
+type FormValues = z.infer<typeof schema>;
+
+// type FormValues = {
+//     firstName: string;
+//     lastName: string;
+//     email: string;
+//     phoneNumber: string;
+//     address: string;
+//     bio: string;
+// };
 
 export default function UserProfile() {
     const {
@@ -22,9 +49,10 @@ export default function UserProfile() {
             lastName: "Hieu",
             email: "hieuntse160479@fpt.edu.vn",
             phoneNumber: "0888888888",
-            address: "179 Nguyen Tat Thanh, Q.3, TPHCM",
+            address: "179 Nguyen Tat Thanh, Cujut, DakNong",
             bio: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam neque explicabo perspiciatis aspernatur eligendi delectus nulla maiores est soluta temporibus sed eum vitae, molestias nemo. Lorem ipsum dolor sit amet consectetur adipisicing elit.",
         },
+        resolver: zodResolver(schema),
     });
 
     const onSubmit: SubmitHandler<FormValues> = async (data: FormValues) => {
@@ -120,6 +148,9 @@ export default function UserProfile() {
                                     id="firstName"
                                     className="mt-1 block w-full py-2 px-3 focus:outline-none border-b border-gray-300 focus:border-gray-700 rounded-md"
                                 />
+                                {errors.firstName && (
+                                    <div className="text-red-500">{errors.firstName.message}</div>
+                                )}
                             </div>
                             <div className="form-item">
                                 <label
@@ -134,6 +165,9 @@ export default function UserProfile() {
                                     id="lastName"
                                     className="mt-1 block w-full py-2 px-3 focus:outline-none border-b border-gray-300 focus:border-gray-700 rounded-md"
                                 />
+                                {errors.lastName && (
+                                    <div className="text-red-500">{errors.lastName.message}</div>
+                                )}
                             </div>
                         </div>
                         {/* Address */}
@@ -163,15 +197,7 @@ export default function UserProfile() {
                                     Phone
                                 </label>
                                 <input
-                                    {...register("phoneNumber", {
-                                        required: "Phone is required",
-                                        pattern:
-                                            /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/,
-                                        minLength: {
-                                            value: 10,
-                                            message: "Phone number is not valid",
-                                        },
-                                    })}
+                                    {...register("phoneNumber")}
                                     type="tel"
                                     id="phone"
                                     className="mt-1 block w-full py-2 px-3 focus:outline-none border-b border-gray-300 focus:border-gray-700 rounded-md"
@@ -188,16 +214,7 @@ export default function UserProfile() {
                                     Email
                                 </label>
                                 <input
-                                    {...register("email", {
-                                        required: "Email is required",
-                                        pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                                        validate: (value) => {
-                                            if (!value.includes("@")) {
-                                                return "Email is not valid";
-                                            }
-                                            return true;
-                                        },
-                                    })}
+                                    {...register("email")}
                                     type="email"
                                     id="email"
                                     className="mt-1 block w-full py-2 px-3 focus:outline-none border-b border-gray-300 focus:border-gray-700 rounded-md"
