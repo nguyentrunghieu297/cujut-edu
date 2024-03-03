@@ -38,9 +38,10 @@ export default function UserProfile() {
     const handleEditProfile = () => {
         setIsEditing(true);
     };
-    const handleSaveOrCancel = () => {
+    const handleCancel = () => {
         setIsEditing(false);
     };
+
     const {
         register,
         handleSubmit,
@@ -60,7 +61,8 @@ export default function UserProfile() {
 
     const onSubmit: SubmitHandler<FormValues> = async (data: FormValues) => {
         try {
-            await new Promise((resolve) => setTimeout(resolve, 1000));
+            await new Promise((resolve) => setTimeout(resolve, 1200));
+            setIsEditing(false);
             console.log(data);
         } catch (error) {
             setError("root", { type: "manual", message: "This email is already in use" });
@@ -151,7 +153,11 @@ export default function UserProfile() {
                         <button
                             onClick={handleEditProfile}
                             disabled={isEditing}
-                            className="cta-btn bg-sky-500 hover:bg-white hover:text-sky-500 text-white font-semibold py-4 px-8 rounded inline-flex items-center transition-colors duration-300"
+                            className={
+                                !isEditing
+                                    ? "cta-btn bg-sky-500 hover:bg-white hover:text-sky-500 text-white font-semibold py-4 px-8 rounded inline-flex items-center transition-colors duration-300"
+                                    : "cta-btn bg-sky-800 text-white font-semibold py-4 px-8 rounded inline-flex items-center transition-colors duration-300"
+                            }
                         >
                             {isEditing ? "Editing Profile..." : "Edit Profile"}
                         </button>
@@ -211,17 +217,26 @@ export default function UserProfile() {
                                 <div className="text-red-500">{errors.root.message}</div>
                             )}
                             <button
-                                disabled={isSubmitting}
-                                onClick={handleSaveOrCancel}
+                                disabled={isSubmitting || !isEditing}
+                                onClick={handleSubmit(onSubmit)}
                                 type="submit"
-                                className="inline-flex items-center justify-center w-28 px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-sky-500 hover:bg-sky-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-700 transition-colors duration-300"
+                                className={
+                                    isEditing
+                                        ? "inline-flex items-center justify-center w-28 px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-sky-500 hover:bg-sky-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-700 transition-colors duration-300"
+                                        : "inline-flex items-center justify-center w-28 px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-sky-800  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-700 transition-colors duration-300"
+                                }
                             >
                                 {isSubmitting ? "Loading..." : "Save"}
                             </button>
                             <button
-                                onClick={handleSaveOrCancel}
+                                disabled={!isEditing}
+                                onClick={handleCancel}
                                 type="button"
-                                className="ml-3 inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-700 transition-colors duration-300"
+                                className={
+                                    isEditing
+                                        ? "ml-3 inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-700 transition-colors duration-300"
+                                        : "ml-3 inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md bg-gray-500 text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-700 transition-colors duration-300"
+                                }
                             >
                                 Cancel
                             </button>
