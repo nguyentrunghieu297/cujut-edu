@@ -1,8 +1,8 @@
 import avatar from "../assets/img/user-img.jpg";
-import { FieldError, SubmitHandler, useForm } from "react-hook-form";
-import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
+import { FieldError, SubmitHandler, useForm } from "react-hook-form";
+import { z } from "zod";
 
 type FieldName = "firstName" | "lastName" | "email" | "phoneNumber" | "address" | "bio";
 
@@ -54,7 +54,7 @@ export default function UserProfile() {
             email: "hieuntse160479@fpt.edu.vn",
             phoneNumber: "0819438687",
             address: "179 Nguyen Tat Thanh, Cujut, DakNong",
-            bio: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam neque explicabo perspiciatis aspernatur eligendi delectus nulla maiores est soluta temporibus sed eum vitae, molestias nemo. Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+            bio: "Khi cancel phai tra lai gia tri nhu khi chua luu. Veniam neque explicabo perspiciatis aspernatur eligendi delectus nulla maiores est soluta temporibus sed eum vitae, molestias nemo. Lorem ipsum dolor sit amet consectetur adipisicing elit.",
         },
         resolver: zodResolver(schema),
     });
